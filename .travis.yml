@@ -4,15 +4,18 @@ matrix:
   include:
     - os: osx
       osx_image: xcode8.2
+      compiler:
+        - clang
       env:
         - OSX_CODENAME=sierra
     - os: osx
       osx_image: xcode7.2
+      compiler:
+        - clang
       env:
         - OSX_CODENAME=el_capitan
 
-compiler:
-- clang
+
 
 
 before_install:
