@@ -1,0 +1,29 @@
+language: cpp
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8.2
+      env:
+        - OSX_CODENAME=sierra
+    - os: osx
+      osx_image: xcode7.2
+      env:
+        - OSX_CODENAME=el_capitan
+
+compiler:
+- clang
+
+
+before_install:
+  - brew update
+  - brew reinstall boost-python --build-bottle --with-python3 --without-python
+
+
+deploy:
+  provider: releases
+  api_key:
+    secure: l55ws1cnyn+2EH/+Ll4PBa35irJh8REYClOfx/XXY3qi+enjLwApMSeIY9Vk8OYa5K6i+Vh3vcgP0UjznpqOUq6hSVd3wkoOBpFVwJLqv9Sog95zQl2o+MuAhEeM3FCdiw1TswXDorVESiaheRZiGvBFQiFR9LN5ZLWHVXs3FHy7eT/lkKUj8/qRxhek3ScddZJmjEbl+kA7gfcSD84sMOxW5hoZ6niIvruvmFvFQd+gspzpOdqlJ2BEbLBZA15/IsS2feggk2vIlWOKwGQBiarCm/v20IDHvgfPQ4VXiBCCkeBlXXlPG3U9t9C5xSrtiaGhTN/kh8jnVymX23iz1g6vzbTWpBWEinlfsyH0hi8rqPB3WKixLvVSNlhmjaYaJD3HoqQF/VnmIhbNmzoi/RYY2ZVXq2jUkV/MB1dwxNm8kDgEdSdkcozVRRHrjm5Fc/pPy9jtPkOdom4facozc7pYTSlx3Ul7cJZfZXQ+XT8RcvhYd84+leHtxrKfzdbfnD7iGOlwLhJI2tltezZs3bOg5ddbc8dJ2Z5Mc81zfgUlL59bW+RzQgufhMEbMShTONjC3APlPrvwZpgIwSr7zqZ7ltRbC4U6VdYDYUgmVnzUogIALuDni0k1WoCIHqlzTXGWZU9cR8PyBVr6dXprwTAYw9njCVvElJQnsc/rN6E=
+  file: boost-python-1.63.0.${OSX_CODENAME}.bottle.1.tar.gz
+  on:
+    repo: bkryza/boost-python3-bottle
